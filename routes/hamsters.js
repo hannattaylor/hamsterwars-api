@@ -9,7 +9,7 @@ const dbo = require("../db/connect");
 const ObjectId = require("mongodb").ObjectId;
 
 //
-// ***** ALL ENDPOINTS FOR THE HAMSTER-API ****** //
+// ****** ALL ENDPOINTS FOR THE HAMSTER-API ****** //
 //
 // ** GET ALL HAMSTER-OBJECTS **
 hamsterRoutes.route("/hamsters").get((req, res) => {
