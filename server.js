@@ -6,7 +6,7 @@ require("dotenv").config({ path: "./config.env" });
 
 const port = process.env.PORT || 1227;
 
-app.use(cors());
+app.use(cors({ origin: "*" }));
 app.use(express.json());
 app.use(require("./routes/hamsters"));
 app.use(require("./routes/matches"));
