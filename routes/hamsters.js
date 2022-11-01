@@ -5,11 +5,11 @@ const hamsterRoutes = express.Router();
 // Connecting to database
 const dbo = require("../db/connect");
 
-// Converts the id from a string to a object-id(_id);
+// Converts the id from a string to an object-id(_id);
 const ObjectId = require("mongodb").ObjectId;
 
 //
-// ****** ALL ENDPOINTS FOR THE HAMSTER-API ****** //
+// ****** ENDPOINTS FOR THE HAMSTER-API ****** //
 //
 // ** GET ALL HAMSTER-OBJECTS **
 hamsterRoutes.route("/hamsters").get((req, res) => {

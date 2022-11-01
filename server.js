@@ -13,6 +13,8 @@ app.use(require("./routes/matches"));
 
 const dbo = require("./db/connect");
 
+app.get("/status", (req, res) => res.sendStatus(200));
+
 app.listen(port, () => {
   dbo.connectToServer((err) => {
     if (err) console.error(err);
