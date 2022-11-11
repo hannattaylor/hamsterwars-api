@@ -35,13 +35,34 @@ matchesRoutes.route("/matches").post((req, res) => {
   }
 });
 
-// ** GET ALL MATCHES **
+// ** GET AMOUNT OF DOCUMENTS IN MATCHES ** //
 matchesRoutes.route("/matches").get((req, res) => {
   try {
     let db_connect = dbo.getDb();
     db_connect
       .collection("matches")
       .find({})
+      .toArray((err, result) => {
+        if (err) throw err;
+        res.status(200).json(result.length);
+      });
+  } catch {
+    res.status(500);
+  }
+});
+
+// ** GET ALL MATCHES (10/page) **
+matchesRoutes.route("/matches/:page").get((req, res) => {
+  const numPerPage = 10;
+  const pageNum = req.params.page;
+  try {
+    let db_connect = dbo.getDb();
+    db_connect
+      .collection("matches")
+      .find({})
+      .sort({ _id: 1 })
+      .skip(pageNum * numPerPage)
+      .limit(numPerPage)
       .toArray((err, result) => {
         if (err) throw err;
         res.status(200).json(result);
@@ -70,6 +91,7 @@ matchesRoutes.route("/matches/:id").delete((req, res) => {
   try {
     let db_connect = dbo.getDb();
     let idQuery = { _id: ObjectId(req.params.id) };
+
     db_connect.collection("matches").deleteOne(idQuery, (err, response) => {
       if (err) throw err;
       res.status(200).json(response);

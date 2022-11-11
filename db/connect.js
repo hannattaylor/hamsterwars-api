@@ -1,4 +1,5 @@
 const { MongoClient } = require("mongodb");
+
 const DB = process.env.ATLAS_URI;
 
 const client = new MongoClient(DB, {

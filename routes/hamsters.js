@@ -116,7 +116,11 @@ hamsterRoutes.route("/hamsters/:id").put((req, res) => {
       .collection("hamsters")
       .updateOne(idQuery, updatedHamster, (err, result) => {
         if (err) throw err;
-        res.status(200).send(result);
+        if (result) {
+          res.sendStatus(200);
+        } else {
+          res.sendStatus(404);
+        }
       });
   } catch {
     res.status(500);
